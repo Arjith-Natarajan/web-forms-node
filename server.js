@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+var Excel = require('exceljs');
 
 const fs = require('fs');
 var path = require('path')
@@ -34,13 +35,46 @@ app.get('/', (req, res) => {
 });
 
 var type = upload.single('file');
-var form_body ={};
+var form_body = {};
 app.post('/submit_form', type, function(req, res) {
   console.log(req.body);
   form_body = req.body;
   var tmp_path = req.file.path;
   var target_path = 'uploads/image.jpg';
 
+
+  var workbook = new Excel.Workbook();
+  var sheet = workbook.addWorksheet("Employee details");
+  // ==================================================================================
+
+
+  sheet.columns = [{
+    header: 'ID',
+    name: 'c_ID'
+  }, {
+    header: 'Name',
+    key: 'name'
+  }, {
+    header: 'Email ID',
+    key: 'email_id'
+  }, {
+    header: 'Mobile',
+    key: 'phone'
+  }, {
+    header: 'Password',
+    key: 'pwd'
+  }, {
+    header: 'AADHAAR CARD NO',
+    key: 'aadhaar'
+  }];
+  sheet.addRow([form_body.customer_id, form_body.customer_name, form_body.customer_e_mail, form_body.phone1, form_body.password, form_body.aadhar]).commit();
+
+
+  // =====================================================================================
+  workbook.xlsx.writeFile("./details.xlsx").then(function() {
+      console.log("xlsx file is written.");
+    })
+    .catch(err => console.error(err));;
   var src = fs.createReadStream(tmp_path);
   var dest = fs.createWriteStream(target_path);
   src.pipe(dest);

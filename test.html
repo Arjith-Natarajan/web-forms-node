@@ -34,7 +34,7 @@
 
 </head>
 
-<body ng-app="formApp">
+<body ng-app="formApp" ng-Controller='FormDisplayController'>
   <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <a href="#" class="navbar-brand">Forms</a>
@@ -53,16 +53,24 @@
 
 
   <section class="col-md-offset-2 col-md-8 panel" style="margin-top: 80px;">
-    <img src="/image.jpg" height="200px" />
-    <div ng-Controller='FormDisplayController'>
+<div class="pull-right" style="margin-top: 20px;">
+  <img src="/image.jpg" height="200px" class="pull-right" />
+
+</div>
+    <div >
       <div>
         <h1>{{registeredCustomer.customer_name}}</h1>
         <h1>{{registeredCustomer.customer_e_mail}}</h1>
         <h1>{{registeredCustomer.phone1}}</h1>
         <h1>{{registeredCustomer.password}}</h1>
         <h1>{{registeredCustomer.customer_id}}</h1>
+        <h1>{{registeredCustomer.aadhar}}</h1>
 
       </div>
+    </div>
+    <div class="pull-right" style="margin-top: 20px;">
+      <img src="/image.jpg" height="200px" class="pull-right" />
+
     </div>
 
   </section>
