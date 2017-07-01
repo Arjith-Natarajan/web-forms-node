@@ -1,6 +1,6 @@
 {
   "name": "web-forms",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "simple web form with print option",
   "main": "server.js",
   "scripts": {
